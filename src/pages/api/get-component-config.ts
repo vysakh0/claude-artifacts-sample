@@ -75,7 +75,6 @@ export default async function handler(
         },
       }
     );
-    console.log(response.data.content[0].text, "--");
     const generatedConfig = JSON.parse(response.data.content[0].text);
 
     res.status(200).json(generatedConfig);
