@@ -1,23 +1,11 @@
-import { GetServerSideProps } from "next";
-import DynamicComponent from "@/components/DynamicComponent";
+// src/pages/index.tsx
 
-interface HomeProps {
-  config: any;
-}
+import DashboardGenerator from "@/components/DashboardCreator";
 
-export default function Home({ config }: HomeProps) {
+export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1 className="text-4xl font-bold mb-8">Dynamic Dashboard</h1>
-      <DynamicComponent config={config} />
+    <main className="min-h-screen p-8">
+      <DashboardGenerator />
     </main>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  // In a real application, you'd fetch this from an API
-  const res = await fetch("http://localhost:3000/api/get-component-config");
-  const config = await res.json();
-
-  return { props: { config } };
-};
