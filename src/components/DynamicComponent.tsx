@@ -28,7 +28,6 @@ interface DashboardConfig {
   components: ComponentConfig[];
 }
 
-// Updated type for componentMap
 type ComponentMapType = {
   [key: string]:
     | React.ComponentType<any>
@@ -126,6 +125,12 @@ const DynamicComponent: React.FC<{ config: DashboardConfig }> = ({
     componentConfig: ComponentConfig
   ): React.ReactNode => {
     const { type, props = {}, children } = componentConfig;
+
+    if (!type || typeof type !== "string") {
+      console.error("Invalid component type:", type);
+      return null;
+    }
+
     const sanitizedProps = sanitizeProps(props);
 
     if (validHtmlTags.includes(type.toLowerCase())) {
