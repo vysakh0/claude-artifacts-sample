@@ -47,7 +47,7 @@ const DashboardGenerator: React.FC = () => {
 
   return (
     <div className="p-4 max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Dynamic Dashboard Generator</h1>
+      <h1 className="text-2xl font-bold mb-4">Claude Artifacts Sample</h1>
       <div className="flex gap-2 mb-4">
         <Input
           type="text"

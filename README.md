@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Dynamic Dashboard Generator
+
+## Overview
+
+This project is a Dynamic Dashboard Generator inspired by Claude's artifacts system. It allows users to create customizable, interactive dashboards using natural language prompts. The system interprets these prompts and generates a dynamic UI configuration, which is then rendered as a fully functional dashboard.
+
+## Features
+
+- **Natural Language Input**: Generate dashboards by describing them in plain English.
+- **Dynamic Component Rendering**: Automatically render various UI components based on the generated configuration.
+- **Customizable Layouts**: Support for different layout options (e.g., single column, two columns).
+- **Integration with Claude API**: Utilizes the Claude API to interpret prompts and generate dashboard configurations.
+
+## Tech Stack
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Shadcn UI Components
+- Recharts for data visualization
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js (v14 or later)
+- npm or yarn
+- A Claude API key
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+   ```
+   git clone https://github.com/vysakh0/claude-artifacts-sample.git
+   cd claude-artifacts-sample
+   ```
 
-## Learn More
+2. Install dependencies:
 
-To learn more about Next.js, take a look at the following resources:
+   ```
+   npm install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Set up environment variables:
+   Create a `.env.local` file in the root directory and add your Claude API key:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   ```
+   CLAUDE_API_KEY=your_api_key_here
+   ```
 
-## Deploy on Vercel
+4. Run the development server:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```
+   npm run dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+
+## Usage
+
+1. Navigate to the main page of the application.
+2. In the input field, describe the dashboard you want to create. For example:
+   "Create a sales dashboard with monthly revenue trends and top-selling products"
+3. Click the "Generate Dashboard" button.
+4. The system will process your request and display the generated dashboard.
+
+## Customization
+
+- Modify the `tailwind.config.js` file to customize the overall theme and styles.
+- Add new component types in the `DynamicComponent.tsx` file to support additional UI elements.
+- Extend the prompt processing logic in the API route to handle more complex dashboard requests.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Inspired by the Claude AI artifacts system
+- UI components from Shadcn UI
+- Charts powered by Recharts
