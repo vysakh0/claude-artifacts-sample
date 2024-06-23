@@ -4,12 +4,12 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
 
 const CLAUDE_API_KEY = process.env.CLAUDE_API_KEY;
-const CLAUDE_API_URL = "https://api.anthropic.com/v1/chat/completions";
+const CLAUDE_API_URL = "https://api.anthropic.com/v1/messages";
 
 const createPrompt = (userMessage: string) => `
 You are a UI configuration generator for a React application. Your task is to create a configuration object based on the user's request. The configuration should be suitable for rendering a dynamic user interface.
 
-User's request: "${userMessage}"
+User's request: """${userMessage}"""
 
 Generate a configuration object that fulfills the user's request. The configuration should include:
 
@@ -26,6 +26,17 @@ Available components include:
 - HTML elements: h1, h2, h3, p, div, span
 
 The configuration should be a valid JSON object. Respond with only the JSON object, no additional explanations.
+The JSON should follow this structure:
+{
+  "layout": "string",
+  "components": [
+    {
+      "type": "string",
+      "props": {},
+      "children": []
+    }
+  ]
+}
 `;
 
 export default async function handler(
@@ -52,18 +63,19 @@ export default async function handler(
     const response = await axios.post(
       CLAUDE_API_URL,
       {
-        model: "claude-3-opus-20240229",
+        model: "claude-3-5-sonnet-20240620",
         messages: [{ role: "user", content: createPrompt(userMessage) }],
-        max_tokens: 2000,
+        max_tokens: 4000,
       },
       {
         headers: {
           "Content-Type": "application/json",
           "x-api-key": CLAUDE_API_KEY,
+          "anthropic-version": "2023-06-01",
         },
       }
     );
-
+    console.log(response.data.content[0].text, "--");
     const generatedConfig = JSON.parse(response.data.content[0].text);
 
     res.status(200).json(generatedConfig);
